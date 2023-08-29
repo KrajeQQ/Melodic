@@ -1,0 +1,136 @@
+<title>Melodic vA2</title>
+<div id="actionbar" onclick="openActionBar();">
+  <script>
+  setTimeout(startTime, 1000);
+    
+  function startTime() {
+    const today = new Date();
+    let h = today.getHours();
+    let m = today.getMinutes();
+    let s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('actionbarclock').innerText =  h + ":" + m;
+    setTimeout(startTime, 1000);
+  }
+  function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }
+  </script>
+  <span id="actionbarclock">00:00</span>
+</div>
+<div id="homescreen">
+  <br><br>
+  <span class="hometext">Your apps:</span><br><br>
+  <span class="icon homeiconskrajeq" onclick="launchAppKrajeQ();"></span><span class="icon homeiconsauitent" onclick="launchAppAuitent();"></span>
+</div>
+<div id="actionbaropen" style="display: none;">
+  <span onclick="closeActionBar();">Close</span>
+</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+html {
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  background: url(https://cdn.discordapp.com/attachments/727102082494234644/1145691163228110888/wallpaperalpha.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  font-family: 'Inter', sans-serif;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+@media (orientation: portrait) {
+  #actionbar {
+    color: white;
+    background: #111;
+    padding: 0.5vw;
+    font-size: 6vw;
+  }
+  #homescreen {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  .hometext {
+    font-size: 6vw;
+    margin: 2vw;
+    color: #ff0000;
+  }
+  .icon {
+    display: inline-block;
+    width: 18vw;
+    height: 18vw;
+    margin: 1vw;
+    border-radius: 4vw;
+    transition: 0.1s;
+  }
+  .icon:active {
+    margin: 2vw;
+    width: 16vw;
+    height: 16vw;
+  }
+  .homeiconskrajeq {
+    background: url(https://krajeq.netlify.app/awatar.png);
+    background-size: 100% 100%;
+  }
+  .homeiconsauitent {
+    background: url(https://auitent.netlify.app/i/auitent.jpg);
+    background-size: 100% 100%;
+  }
+  #actionbaropen {
+    width: 100%; height: 100vh;
+    background: rgb(0, 0, 0, 0.97);
+    color: white;
+    font-size: 4vw;
+  }
+  .appopened {
+    width: 100%; height: 100vh;
+    background: white;
+  }
+}
+</style>
+<script>
+function launchAppKrajeQ() {
+    document.getElementById("homescreen").style.display = "none";
+    var newIframe = document.createElement("iframe");
+    newIframe.src = "https://krajeq.netlify.app/";
+    newIframe.classList.add("appopened");
+    
+    document.body.appendChild(newIframe);
+};
+function launchAppAuitent() {
+    document.getElementById("homescreen").style.display = "none";
+    var newIframe = document.createElement("iframe");
+    newIframe.src = "https://auitent.netlify.app/";
+    newIframe.classList.add("appopened");
+    
+    document.body.appendChild(newIframe);
+};
+function openActionBar() {
+  document.getElementById("actionbar").style.display = "none";
+  document.getElementById("homescreen").style.display = "none";
+  document.getElementById("actionbaropen").style.display = "block";
+}
+function closeActionBar() {
+  document.getElementById("actionbar").style.display = "block";
+  document.getElementById("homescreen").style.display = "block";
+  document.getElementById("actionbaropen").style.display = "none";
+}
+</script>
